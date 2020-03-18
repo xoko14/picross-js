@@ -22,7 +22,7 @@ function crearTabla(){
 function generate(){
     var largo = document.getElementById("largo").value;
     var alto = document.getElementById("alto").value;
-    var field = document.getElementById("code");
+    var code = document.getElementById("code");
     var picross = [largo,alto];
     for(i=1;i<=largo*alto;i++){
         if(document.getElementById(i).checked == true){
