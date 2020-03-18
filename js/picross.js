@@ -11,6 +11,7 @@ function crearTabla(){
             var input = document.createElement("input");
             input.setAttribute("id", conta);
             input.setAttribute("type", "checkbox");
+            input.setAttribute("class", "picrossCel");
             tede.appendChild(input);
             tehache.appendChild(tede);
             conta++
