@@ -76,7 +76,7 @@ function getStringInfo(tType,tStr){
             var Str = getCol(tStr);
             break;
         default:
-            console.log("Error, input not nice.");
+            console.log("Error, input not nice enough. :(");
             break;
     }
     var conde = 0;
