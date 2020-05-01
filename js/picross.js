@@ -99,3 +99,24 @@ function getStringInfo(tType,tStr){
     }
     return final.toString().replace(/,/g, ' ');
 }
+
+function BtD(bstr) { 
+    return BigInt(parseInt((bstr + '').replace(/[^01]/gi, ''), 2));
+}
+
+function compress(unStr){
+    var ex = unStr[0] + unStr[1];
+    var why = unStr[2] + unStr[3];
+    var length = ex*why;
+    var toCompress = "";
+
+    for(i=0;i<length;i++){
+        toCompress = toCompress.concat(unStr[4+i]);
+    }
+    //console.log(toCompress);
+    var compressed = BigInt('0b' + toCompress).toString();
+    var final = ex + why + compressed
+    //console.log(compressed);
+    return final;
+}
+
