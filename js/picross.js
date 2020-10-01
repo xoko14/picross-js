@@ -120,3 +120,11 @@ function compress(unStr){
     return final;
 }
 
+//uncomplete, trying to figure out
+function uncompress(compStr){
+    var ex = compStr[0] + compStr[1];
+    var why = compStr[2] + compStr[3];
+    var uncompStr = parseInt(BigInt(compStr), 2);
+    console.log(uncompStr);
+}
+
