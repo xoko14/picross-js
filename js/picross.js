@@ -122,9 +122,7 @@ function compress(unStr){
 
 //uncomplete, trying to figure out
 function uncompress(compStr){
-    var ex = compStr[0] + compStr[1];
-    var why = compStr[2] + compStr[3];
-    var uncompStr = parseInt(BigInt(compStr), 2);
+    var uncompStr = compStr.toString(2);
     console.log(uncompStr);
 }
 
