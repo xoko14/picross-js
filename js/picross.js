@@ -114,15 +114,26 @@ function compress(unStr){
         toCompress = toCompress.concat(unStr[4+i]);
     }
     //console.log(toCompress);
-    var compressed = BigInt('0b' + toCompress).toString();
+    var compressed = BigInt('0b' + toCompress).toString(16);
     var final = ex + why + compressed
     //console.log(compressed);
     return final;
 }
 
 //uncomplete, trying to figure out
-function uncompress(compStr){
-    var uncompStr = compStr.toString(2);
-    console.log(uncompStr);
+function decompress(compStr){
+    var ex = compStr.charAt(0) + compStr.charAt(1);
+    var why = compStr.charAt(2) + compStr.charAt(3);
+    var length = ex*why;
+    var toDecompress = "";
+
+    for(i=0;i<length;i++){
+        toDecompress = toDecompress.concat(compStr.charAt(4+i));
+    }
+
+    var decompStr = BigInt("0x" + toDecompress).toString(2);
+    var final = ex + why + decompStr;
+    //console.log(decompStr);
+    return final;
 }
 
