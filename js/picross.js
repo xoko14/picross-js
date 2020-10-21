@@ -10,7 +10,7 @@ function crearTabla(){
     for(i=1;i<=alto;i++){
         var tehache = document.createElement("tr");
         for(e=1;e<=largo;e++){
-            var tede = document.createElement("th");
+            var tede = document.createElement("td");
             var input = document.createElement("input");
             input.setAttribute("id", conta);
             input.setAttribute("type", "checkbox");
@@ -137,3 +137,26 @@ function decompress(compStr){
     return final;
 }
 
+function crearTablaJ(){
+    var seed = document.getElementById("seed").value;
+    var tabla = document.getElementById("tabla");
+    var largo = seed.charAt(0) + seed.charAt(1);
+    var alto = seed.charAt(2) + seed.charAt(3);
+    var conta = 0;
+    tabla.innerHTML = '';
+    for(i=1;i<=alto;i++){
+        var tehache = document.createElement("tr");
+        for(e=1;e<=largo;e++){
+            var tede = document.createElement("td");
+            var input = document.createElement("input");
+            input.setAttribute("id", conta);
+            input.setAttribute("type", "checkbox");
+            input.setAttribute("class", "picrossCel");
+            input.checked = seed.charAt(4+conta);
+            tede.appendChild(input);
+            tehache.appendChild(tede);
+            conta++
+        }
+        tabla.appendChild(tehache);
+    }
+}
