@@ -138,7 +138,7 @@ function decompress(compStr){
 }
 
 function crearTablaJ(){
-    var seed = document.getElementById("seed").value;
+    var seed = decompress(document.getElementById("seed").value);
     var tabla = document.getElementById("tabla");
     var largo = seed.charAt(0) + seed.charAt(1);
     var alto = seed.charAt(2) + seed.charAt(3);
@@ -152,7 +152,19 @@ function crearTablaJ(){
             input.setAttribute("id", conta);
             input.setAttribute("type", "checkbox");
             input.setAttribute("class", "picrossCel");
-            input.checked = seed.charAt(4+conta);
+            switch(seed.charAt(4+conta)){
+                case "1":
+                    var checkValue = true;
+                    console.log("true");
+                    break;
+                case "0":
+                    var checkValue = false;
+                    console.log("false");
+                    break;
+                default:
+                    console.log("error");
+            }
+            input.checked = checkValue;
             tede.appendChild(input);
             tehache.appendChild(tede);
             conta++
