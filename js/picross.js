@@ -27,6 +27,7 @@ function crearTabla() {
 function generate() {
     var largo = document.getElementById("largo").value;
     var alto = document.getElementById("alto").value;
+    //these two lines of code up here are the responsible to the two inputs in play.html
     if (largo.length == 1) {
         largo = "0" + largo;
     }
@@ -57,6 +58,7 @@ function getRow(tRow) {
     return row;
 }
 
+//get an specific column
 function getCol(tCol) {
     var picrossImp = piRAM;
     var iy = picrossImp[2] + picrossImp[3];
@@ -67,6 +69,7 @@ function getCol(tCol) {
     return col;
 }
 
+//get a string with the data to show to the player about a row/column
 function getStringInfo(tType, tStr) {
     switch (tType) {
         case "row":
@@ -100,10 +103,13 @@ function getStringInfo(tType, tStr) {
     return final.toString().replace(/,/g, ' ');
 }
 
+//binary to decimal
 function BtD(bstr) {
     return BigInt(parseInt((bstr + '').replace(/[^01]/gi, ''), 2));
 }
 
+//returns compressed string
+//the compression is just converting from binary to hex (except the first 4 chars, used to store the dimensions)
 function compress(unStr) {
     var ex = unStr[0] + unStr[1];
     var why = unStr[2] + unStr[3];
@@ -120,7 +126,7 @@ function compress(unStr) {
     return final;
 }
 
-//uncomplete, trying to figure out
+//returns decompressed string
 function decompress(compStr) {
     var ex = compStr.charAt(0) + compStr.charAt(1);
     var why = compStr.charAt(2) + compStr.charAt(3);
@@ -137,6 +143,7 @@ function decompress(compStr) {
     return final;
 }
 
+//displays the visualizer table
 function crearTablaJ() {
     var seed = decompress(document.getElementById("seed").value);
     var tabla = document.getElementById("tabla");
@@ -173,6 +180,7 @@ function crearTablaJ() {
     }
 }
 
+//displays the playfield
 function crearTablaP() {
     document.getElementById("seed").disabled = true;
     var seed = decompress(document.getElementById("seed").value);
@@ -238,6 +246,7 @@ function crearTablaP() {
     }
 }
 
+//check wether the solution is correct
 function check(){
     var seed = document.getElementById("seed").value;
     var largo = parseInt(seed.charAt(0) + seed.charAt(1));
