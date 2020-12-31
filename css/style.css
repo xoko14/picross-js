@@ -15,8 +15,10 @@ table{
 td{
     height: 30;
     width: 30;
+    vertical-align: bottom;
+    text-align: center;
 }
-
+/*
 .verticalTableHeader {
     text-align:center;
     white-space:nowrap;
@@ -30,12 +32,16 @@ td{
 }
 .verticalTableHeader:before {
     content:'';
-    padding-top:110%;/* takes width as reference, + 10% for faking some extra padding */
+    padding-top:110%;
     display:inline-block;
     vertical-align:middle;
-}
+}*/
 
 .horizontalTableHeader {
     text-align:right;
     
 }
+
+div {
+    text-align: center;
+  }

@@ -174,13 +174,14 @@ function crearTablaJ() {
 }
 
 function crearTablaP() {
+    document.getElementById("seed").disabled = true;
     var seed = decompress(document.getElementById("seed").value);
     piRAM = seed.toString();
     var tabla = document.getElementById("tabla");
     var largo = parseInt(seed.charAt(0) + seed.charAt(1));
     var alto = parseInt(seed.charAt(2) + seed.charAt(3));
     console.log(largo + ", " + alto)
-    var conta = 0;
+    var conta = 1;
     var contaC = -1;
     var contaR = 0;
     tabla.innerHTML = '';
@@ -189,11 +190,13 @@ function crearTablaP() {
         if (i == 0) {
             for (e = 0; e <= largo; e++) {
                 var tede = document.createElement("td");
-                var span = document.createElement("span");
+                var span = document.createElement("div");
+                var lineBreak = document.createElement("br");
                 span.setAttribute("id", "c" + (contaC));
-                span.setAttribute("class", "verticalTableHeader");
+                tede.setAttribute("class", "verticalTableHeader");
                 if(contaC>=0){
-                    span.textContent = getStringInfo("col", contaC).replace(' ', '\n');
+                    var content = getStringInfo("col", contaC)
+                    span.innerHTML = content.replace(/ /g, "<br>");
                     console.log( i+" "+e + " doneteC " + contaC);
                 }
                 else{
@@ -210,7 +213,7 @@ function crearTablaP() {
                     var tede = document.createElement("td");
                     var span = document.createElement("span");
                     span.setAttribute("id", "r" + contaR);
-                    span.setAttribute("class", "horizontalTableHeader");
+                    tede.setAttribute("class", "horizontalTableHeader");
                     if(contaR>=0){
                         span.textContent = getStringInfo("row", contaR);
                         console.log("doneteR " + contaR);
@@ -232,5 +235,22 @@ function crearTablaP() {
             }
         }
         tabla.appendChild(tehache);
+    }
+}
+
+function check(){
+    var seed = document.getElementById("seed").value;
+    var largo = parseInt(seed.charAt(0) + seed.charAt(1));
+    var alto = parseInt(seed.charAt(2) + seed.charAt(3));
+    document.getElementById("largo").value = largo
+    document.getElementById("alto").value = alto
+    generate();
+    if (compress(piRAM)==seed) {
+        document.getElementById("code").innerHTML = "correct"
+        console.log("correct");
+    }
+    else {
+        document.getElementById("code").innerHTML = "incorrect"
+        console.log("incorrect");
     }
 }
