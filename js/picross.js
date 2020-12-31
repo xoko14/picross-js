@@ -51,8 +51,8 @@ function getRow(tRow) {
     var picrossImp = piRAM;
     var equis = picrossImp[0] + picrossImp[1];
     var row = [];
-    for (i = 0; i < equis; i++) {
-        row.push(picrossImp[4 + tRow * equis + i]);
+    for (r = 0; r < equis; r++) {
+        row.push(picrossImp[4 + tRow * equis + r]);
     }
     return row;
 }
@@ -61,8 +61,8 @@ function getCol(tCol) {
     var picrossImp = piRAM;
     var iy = picrossImp[2] + picrossImp[3];
     var col = [];
-    for (i = 0; i < iy; i++) {
-        col.push(picrossImp[4 + tCol + iy * i]);
+    for (c = 0; c < iy; c++) {
+        col.push(picrossImp[4 + tCol + iy * c]);
     }
     return col;
 }
@@ -82,8 +82,8 @@ function getStringInfo(tType, tStr) {
     var conde = 0;
     var final = [];
     //console.log(Str.length + ", " + Str);
-    for (i = 0; i < Str.length; i++) {
-        if (Str[i] == 1) {
+    for (s = 0; s < Str.length; s++) {
+        if (Str[s] == 1) {
             conde++;
         }
         else {
@@ -92,9 +92,9 @@ function getStringInfo(tType, tStr) {
         }
     }
     final.push(conde);
-    for (i = final.length - 1; i >= 0; i--) {
-        if (final[i] === 0) {
-            final.splice(i, 1);
+    for (s = final.length - 1; s >= 0; s--) {
+        if (final[s] === 0) {
+            final.splice(s, 1);
         }
     }
     return final.toString().replace(/,/g, ' ');
@@ -177,11 +177,12 @@ function crearTablaP() {
     var seed = decompress(document.getElementById("seed").value);
     piRAM = seed.toString();
     var tabla = document.getElementById("tabla");
-    var largo = seed.charAt(0) + seed.charAt(1);
-    var alto = seed.charAt(2) + seed.charAt(3);
+    var largo = parseInt(seed.charAt(0) + seed.charAt(1));
+    var alto = parseInt(seed.charAt(2) + seed.charAt(3));
+    console.log(largo + ", " + alto)
     var conta = 0;
     var contaC = -1;
-    var contaR = -1;
+    var contaR = 0;
     tabla.innerHTML = '';
     for (i = 0; i <= alto; i++) {
         var tehache = document.createElement("tr");
@@ -189,11 +190,11 @@ function crearTablaP() {
             for (e = 0; e <= largo; e++) {
                 var tede = document.createElement("td");
                 var span = document.createElement("span");
-                span.setAttribute("id", "c" + (contaC-1));
+                span.setAttribute("id", "c" + (contaC));
                 span.setAttribute("class", "verticalTableHeader");
                 if(contaC>=0){
-                    span.textContent = getStringInfo("col", contaC);
-                    console.log("donete " + contaC);
+                    span.textContent = getStringInfo("col", contaC).replace(' ', '\n');
+                    console.log( i+" "+e + " doneteC " + contaC);
                 }
                 else{
                     span.textContent = "";
@@ -209,10 +210,10 @@ function crearTablaP() {
                     var tede = document.createElement("td");
                     var span = document.createElement("span");
                     span.setAttribute("id", "r" + contaR);
-                    //span.setAttribute("class", "verticalTableHeader");
+                    span.setAttribute("class", "horizontalTableHeader");
                     if(contaR>=0){
                         span.textContent = getStringInfo("row", contaR);
-                        console.log("donete " + contaR);
+                        console.log("doneteR " + contaR);
                     }
                     tede.appendChild(span);
                     tehache.appendChild(tede);

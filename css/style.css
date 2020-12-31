@@ -34,3 +34,8 @@ td{
     display:inline-block;
     vertical-align:middle;
 }
+
+.horizontalTableHeader {
+    text-align:right;
+    
+}
