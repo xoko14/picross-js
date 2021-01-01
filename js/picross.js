@@ -138,8 +138,11 @@ function decompress(compStr) {
     }
 
     var decompStr = BigInt("0x" + toDecompress).toString(2);
-    for(c=0;c<(length-decompStr.length);c++){//place 0s omitted from compression
-        decompStr = "0"+decompStr;
+
+    if (decompStr.length != length) {
+        for (c = 0; c <= (length - decompStr.length); c++) {//place 0s omitted from compression, not working properly
+            decompStr = "0" + decompStr;
+        }
     }
     var final = ex + why + decompStr;
     //console.log(decompStr);
@@ -205,12 +208,12 @@ function crearTablaP() {
                 var lineBreak = document.createElement("br");
                 span.setAttribute("id", "c" + (contaC));
                 tede.setAttribute("class", "verticalTableHeader");
-                if(contaC>=0){
+                if (contaC >= 0) {
                     var content = getStringInfo("col", contaC)
                     span.innerHTML = content.replace(/ /g, "<br>");
-                    console.log( i+" "+e + " doneteC " + contaC);
+                    console.log(i + " " + e + " doneteC " + contaC);
                 }
-                else{
+                else {
                     span.textContent = "";
                 }
                 tede.appendChild(span);
@@ -225,7 +228,7 @@ function crearTablaP() {
                     var span = document.createElement("span");
                     span.setAttribute("id", "r" + contaR);
                     tede.setAttribute("class", "horizontalTableHeader");
-                    if(contaR>=0){
+                    if (contaR >= 0) {
                         span.textContent = getStringInfo("row", contaR);
                         console.log("doneteR " + contaR);
                     }
@@ -239,6 +242,25 @@ function crearTablaP() {
                     input.setAttribute("id", conta);
                     input.setAttribute("type", "checkbox");
                     input.setAttribute("class", "picrossCel");
+                    input.setAttribute("readonly", "readonly")
+                    //input.addEventListener("onclick", function onlyread(){this.checked=!this.checked;})
+                    input.addEventListener("mousedown", function (event) {
+                        switch (event.which) {
+                            case 1:
+                                this.disabled = false;
+                                this.checked = true;
+                                break;
+                            case 2:
+                                this.disabled = false;
+                                this.checked = false;
+                                break;
+                            case 3:
+                                this.disabled = true;
+                                this.checked = true;
+                                break;
+                        }
+                        console.log(event.which);
+                    });
                     tede.appendChild(input);
                     tehache.appendChild(tede);
                     conta++
@@ -250,14 +272,14 @@ function crearTablaP() {
 }
 
 //check wether the solution is correct
-function check(){
+function check() {
     var seed = document.getElementById("seed").value;
     var largo = parseInt(seed.charAt(0) + seed.charAt(1));
     var alto = parseInt(seed.charAt(2) + seed.charAt(3));
     document.getElementById("largo").value = largo
     document.getElementById("alto").value = alto
     generate();
-    if (compress(piRAM)==seed) {
+    if (compress(piRAM) == seed) {
         document.getElementById("code").innerHTML = "correct"
         console.log("correct");
     }
@@ -267,7 +289,22 @@ function check(){
     }
 }
 
-function showCode(){
+function showCode() {
     var code = document.getElementById("code");
     code.innerHTML = compress(piRAM);
+}
+
+function fill() {
+    this.disabled = false;
+    this.checked = true;
+}
+
+function cross() {
+    this.disabled = true;
+    this.checked = true;
+}
+
+function erase() {
+    this.disabled = false;
+    this.checked = false;
 }
