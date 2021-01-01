@@ -5,11 +5,11 @@
 </head>
 
 <body>
-    <input id="largo">x<input id="alto"><button onclick="crearTabla();">go</button>
+    <input id="largo">x<input id="alto"><button onclick="crearTabla(); document.getElementById('share').disabled = false;">Generate board</button>
     <br>
     <table id="tabla">
     </table>
-    <button onclick="generate();">DALE</button>
+    <button id="share" onclick="generate();showCode();" disabled>Share board</button>
     <code id="code"></code>
     <script type="text/javascript" src="js/picross.js"></script>
 </body>

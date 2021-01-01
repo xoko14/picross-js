@@ -138,6 +138,9 @@ function decompress(compStr) {
     }
 
     var decompStr = BigInt("0x" + toDecompress).toString(2);
+    for(c=0;c<(length-decompStr.length);c++){//place 0s omitted from compression
+        decompStr = "0"+decompStr;
+    }
     var final = ex + why + decompStr;
     //console.log(decompStr);
     return final;
@@ -262,4 +265,9 @@ function check(){
         document.getElementById("code").innerHTML = "incorrect"
         console.log("incorrect");
     }
+}
+
+function showCode(){
+    var code = document.getElementById("code");
+    code.innerHTML = compress(piRAM);
 }
