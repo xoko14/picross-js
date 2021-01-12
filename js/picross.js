@@ -242,7 +242,7 @@ function crearTablaP() {
                     input.setAttribute("id", conta);
                     input.setAttribute("type", "checkbox");
                     input.setAttribute("class", "picrossCel");
-                    input.setAttribute("readonly", "readonly")
+                    //input.setAttribute("readonly", "readonly")
                     //input.addEventListener("onclick", function onlyread(){this.checked=!this.checked;})
                     input.addEventListener("mousedown", function (event) {
                         switch (event.which) {
