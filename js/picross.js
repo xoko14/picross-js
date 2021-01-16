@@ -36,7 +36,7 @@ function generate() {
     }
     var picross = [largo, alto];
     for (i = 1; i <= largo * alto; i++) {
-        if (document.getElementById(i).checked == true) {
+        if (document.getElementById(i).checked == true && document.getElementById(i).disabled == false) {
             picross.push(1);
         }
         else {
@@ -130,7 +130,7 @@ function compress(unStr) {
 function decompress(compStr) {
     var ex = compStr.charAt(0) + compStr.charAt(1);
     var why = compStr.charAt(2) + compStr.charAt(3);
-    var length = ex * why;
+    var length = parseInt(ex) * parseInt(why);
     var toDecompress = "";
 
     for (i = 0; i < length; i++) {
@@ -139,11 +139,33 @@ function decompress(compStr) {
 
     var decompStr = BigInt("0x" + toDecompress).toString(2);
 
-    if (decompStr.length != length) {
+    /*if (decompStr.length != length) {
         for (c = 0; c <= (length - decompStr.length); c++) {//place 0s omitted from compression, not working properly
             decompStr = "0" + decompStr;
         }
+    }*/
+
+    while(decompStr.length != length){
+        decompStr = "0" + decompStr;
     }
+
+    var final = ex + why + decompStr;
+    //console.log(decompStr);
+    return final;
+}
+
+function decompressOld(compStr) {
+    var ex = compStr.charAt(0) + compStr.charAt(1);
+    var why = compStr.charAt(2) + compStr.charAt(3);
+    var length = parseInt(ex) * parseInt(why);
+    var toDecompress = "";
+
+    for (i = 0; i < length; i++) {
+        toDecompress = toDecompress.concat(compStr.charAt(4 + i));
+    }
+
+    var decompStr = BigInt("0x" + toDecompress).toString(2);
+
     var final = ex + why + decompStr;
     //console.log(decompStr);
     return final;
