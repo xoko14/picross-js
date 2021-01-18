@@ -62,9 +62,10 @@ function getRow(tRow) {
 function getCol(tCol) {
     var picrossImp = piRAM;
     var iy = picrossImp[2] + picrossImp[3];
+    var equis = picrossImp[0] + picrossImp[1];
     var col = [];
     for (c = 0; c < iy; c++) {
-        col.push(picrossImp[4 + tCol + iy * c]);
+        col.push(picrossImp[4 + tCol + equis * c]);
     }
     return col;
 }
